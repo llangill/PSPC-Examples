@@ -1,0 +1,57 @@
+<?php
+/**
+ * @file
+ * Create a link for downloading the daily report.
+ * Only allow q-admin@eton.ca to access the page. 
+ */
+
+ /**
+ * Implements hook_menu().
+ */
+function local_generate_report_menu() {
+  $items['nightly-report'] = array(
+    'title' => t('See the nightly report.'),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('local_generate_report_get_report'),
+    'type' => MENU_CALLBACK,
+    'access callback' => true,
+  );
+  
+  return $items;
+}
+
+function local_generate_report_get_report($form, &$form_state, $fy = false) {
+  
+  $groups = og_get_groups_by_user();
+  $is_administrator = FALSE;
+  if (is_array($groups) && array_key_exists('node', $groups) && is_array($groups['node'])) {
+    foreach ($groups['node'] as $gid) {
+      $roles = og_get_user_roles('node', $gid);
+      if (in_array('Administrator', $roles)) {
+        $is_administrator = TRUE;
+        break;
+      }
+    }
+  }
+
+  //global $user;
+  if ($is_administrator) { //($user->mail == 'q-admin@eton.ca') {
+    $file_dir = drupal_realpath(file_default_scheme() . '://').'/private/nightly-report/';
+    $basename = 'aocama_accords-sosaa_agreements';
+    $filename = $file_dir . $basename . ".csv";
+  
+    if (file_exists($filename)){
+      header("Content-type: text/csv; charset=utf-8");
+      header("Content-Disposition: inline;filename=" . basename($filename));
+      header("Content-Length: " . filesize($filename));
+      ob_clean();
+      flush();
+      readfile($filename);
+      exit;
+    } else {
+      drupal_not_found();
+    }
+  } else {
+    drupal_access_denied();
+  }
+}

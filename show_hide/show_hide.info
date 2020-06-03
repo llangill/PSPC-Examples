@@ -1,0 +1,7 @@
+name = Show/Hide
+description = Show/Hide sections of a page based on Items, Sections, or Pixel height.
+package = Buyandsell
+core = 7.x
+version = 7.x-1.0-alpha1
+
+stylesheets[all][] = css/show_hide.css

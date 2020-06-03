@@ -1,0 +1,61 @@
+a.sh-click,
+a.sh-click-dt {
+  text-align: right;
+  display: block;
+  cursor: pointer;
+  clear: both;
+}
+
+.sh-parent.sh-element-hidden .sh-item,
+.sh-parent.sh-element-hidden .sh-section,
+.sh-parent.sh-element-hidden .sh-filter {
+  position: absolute !important;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+  overflow: hidden;
+  height: 1px;
+}
+
+/* 350px is = 20 lines of text */
+.sh-parent.sh-element-hidden .sh-pix-350 {
+  max-height: 350px;
+  overflow: hidden;
+  margin-top: -5px;
+}
+
+.sh-parent.sh-sections a.sh-click,
+.sh-parent.sh-sections-dt a.sh-click-dt,
+.sh-parent.sh-filters a.sh-click {
+  color: inherit;
+  text-decoration: none !important;
+}
+
+.sh-parent.sh-sections a.sh-click:after,
+.sh-parent.sh-sections-dt a.sh-click-dt:after,
+.sh-parent.sh-filters a.sh-click:after {
+  font-size: .75em !important;
+}
+
+.sh-parent.sh-sections a.sh-click:after,
+.sh-parent.sh-sections-dt a.sh-click-dt:after,
+.sh-parent.sh-filters a.sh-click:after {
+  content: " \25B2";
+}
+
+.sh-parent.sh-sections.sh-element-hidden a.sh-click:after,
+.sh-parent.sh-sections-dt.sh-element-hidden a.sh-click-dt:after,
+.sh-parent.sh-filters.sh-element-hidden a.sh-click:after {
+  content: " \25BC";
+}
+
+.view-content .sh-parent .tender_description pre {
+  margin: 1em 0px;
+}
+
+.sh-parent.sh-sections a.sh-click,
+.sh-parent.sh-sections-dt a.sh-click-dt,
+.sh-parent.sh-filters a.sh-click {
+  position: absolute;
+  right: 10px;
+  margin-top: -28px;
+}

@@ -1,0 +1,45 @@
+<?php
+/*
+ * Implements hook_install().
+ *
+ **/
+
+/**
+ * https://gitlab.buyandsell.gc.ca/buy-and-sell/web-presence/issues/90 - Changes to overall layout of Tender Notice page
+ */
+
+function show_hide_install() {
+
+  print('Setting translations');
+  //Translate
+  $report = array(
+    'skips'=>0,
+    'updates'=>0,
+    'deletes'=>0,
+    'additions'=>0
+  );
+  $langcode = 'fr';
+  $context = '';
+  $textgroup = 'default';
+  $location = '';
+  $mode = LOCALE_IMPORT_OVERWRITE;
+
+  print('.');
+  $source = "Click to expand";
+  $translation = "Cliquer pour agrandir";
+  _locale_import_one_string_db($report, $langcode, $context, $source, $translation, $textgroup, $location, $mode);
+
+  print('.');
+  $source = "Click to collapse";
+  $translation = "Cliquer pour réduire";
+  _locale_import_one_string_db($report, $langcode, $context, $source, $translation, $textgroup, $location, $mode);
+
+  print('.');
+  $source = "Show less";
+  $translation = "Afficher moins";
+  _locale_import_one_string_db($report, $langcode, $context, $source, $translation, $textgroup, $location, $mode);
+
+  // Clear all cache
+  print("\nClearing caches.\n");
+  drupal_flush_all_caches();
+}

@@ -1,0 +1,19 @@
+<?php
+/**
+ * @file
+ * Modify the current unsubscribe form to post data to the Exit Survey webform.
+ */
+ 
+/*function show_hide (&$form, &$form_state, $form_id) {
+  drupal_add_css($full_path);
+}*/
+
+function show_hide_page_alter(){
+  //drupal_add_css(drupal_get_path('module', 'local_data') . '/css/data-data-tender-notice--v2.css', array('group' => CSS_DEFAULT, 'every_page' => TRUE));
+  //drupal_add_js('https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js', 'external');
+  drupal_add_js(drupal_get_path('module', 'show_hide') . '/js/show_hide.js',
+    array(
+      'scope' => 'header',
+    )
+  );
+}

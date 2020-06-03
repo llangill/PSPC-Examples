@@ -1,0 +1,18 @@
+<?php
+/*
+ * Implements hook_install().
+ *
+ **/
+
+function local_generate_report_install() {
+  // Set the private path variable and create the directory
+  $private_path = conf_path() . '/files/private/'; //'public://nightly-report/'; //
+  file_prepare_directory($private_path, FILE_CREATE_DIRECTORY);
+  $nightly_directory = $private_path . '/nightly-report/';
+  file_prepare_directory($nightly_directory, FILE_CREATE_DIRECTORY);
+  variable_set('file_private_path', $private_path);
+  file_create_htaccess($private_path, TRUE);
+  file_create_htaccess($nightly_directory, TRUE);
+  $file_dir = drupal_realpath(file_default_scheme() . '://').'/files/private/';
+  $file_ds = file_default_scheme() . '://';
+}
